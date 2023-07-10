@@ -1,0 +1,49 @@
+name: door_hub
+version: 1.0.0+1
+publish_to: none
+description: A new Flutter project.
+environment: 
+  sdk: '>=2.19.0 <3.0.0'
+
+dependencies: 
+  cupertino_icons: ^1.0.2
+  get: 4.6.5
+  flutter: 
+    sdk: flutter
+  flutter_screenutil: ^5.7.0
+  flutter_svg: ^2.0.5
+  google_fonts: ^4.0.4
+  smooth_page_indicator: ^1.1.0
+  flutter_launcher_icons: ^0.13.1
+  flutter_native_splash: ^2.3.1
+  table_calendar: ^3.0.9
+  intl: ^0.18.1
+  carousel_slider: ^4.2.1
+  credit_card_scanner: ^1.0.5
+  showcaseview: ^2.0.3
+
+dev_dependencies: 
+  flutter_lints: ^2.0.0
+  flutter_test: 
+    sdk: flutter
+
+flutter: 
+  uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/images/
+    - assets/icons/
+
+flutter_native_splash:
+  image: assets/images/logo_white.png
+  color: "6759FF"
+  color_dark: "#121212"
+  fullscreen: true
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  remove_alpha_ios: true
+  image_path: "assets/images/app_icon.png"
+  

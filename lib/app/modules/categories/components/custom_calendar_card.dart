@@ -1,0 +1,62 @@
+import 'package:door_hub/app/data/constants/constants.dart';
+import 'package:door_hub/app/model/events.dart';
+import 'package:door_hub/app/modules/calendar/components/calendar_style.dart';
+import 'package:flutter/material.dart';
+import 'package:table_calendar/table_calendar.dart';
+
+class CustomCalendarCard extends StatefulWidget {
+  final void Function(DateTime?) onDaySelected;
+
+  const CustomCalendarCard({required this.onDaySelected, Key? key})
+      : super(key: key);
+
+  @override
+  State<CustomCalendarCard> createState() => _CustomCalendarCardState();
+}
+
+class _CustomCalendarCardState extends State<CustomCalendarCard> {
+  DateTime _focusedDay = DateTime.now();
+  DateTime? _selectedDay;
+
+  void _onDaySelected(DateTime selectedDay, DateTime focusedDay) {
+    if (!isSameDay(_selectedDay, selectedDay)) {
+      setState(() {
+        _selectedDay = selectedDay;
+        _focusedDay = focusedDay;
+      });
+      widget.onDaySelected(_selectedDay); // Call the callback with selected day
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return TableCalendar(
+      firstDay: kFirstDay,
+      lastDay: kLastDay,
+      shouldFillViewport: true,
+      availableGestures: AvailableGestures.none,
+      headerStyle: CustomCalendarStyle.getStyle(),
+      focusedDay: _focusedDay,
+      selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
+      daysOfWeekStyle: DaysOfWeekStyle(
+        weekdayStyle: AppTypography.kMedium14,
+        weekendStyle: AppTypography.kMedium14,
+      ),
+      calendarFormat: CalendarFormat.month,
+      startingDayOfWeek: StartingDayOfWeek.sunday,
+      calendarStyle: CalendarStyle(
+        selectedDecoration: const BoxDecoration(
+          color: AppColors.kPrimary,
+          shape: BoxShape.circle,
+        ),
+        selectedTextStyle: AppTypography.kMedium13.copyWith(
+          color: AppColors.kWhite,
+        ),
+      ),
+      onDaySelected: _onDaySelected,
+      onPageChanged: (focusedDay) {
+        _focusedDay = focusedDay;
+      },
+    );
+  }
+}
