@@ -1,4 +1,5 @@
 import 'package:door_hub/app/data/constants/constants.dart';
+import 'package:door_hub/app/data/helper/textfield_input_formatters.dart';
 import 'package:door_hub/app/modules/auth/components/auth_field.dart';
 import 'package:door_hub/app/modules/payment/components/custom_check_box.dart';
 import 'package:door_hub/app/modules/payment/scan_card.dart';
@@ -7,6 +8,7 @@ import 'package:door_hub/app/modules/widgets/buttons/primary_button.dart';
 import 'package:door_hub/app/modules/widgets/containers/primary_container.dart';
 import 'package:door_hub/app/modules/widgets/texts/custom_header_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -53,8 +55,13 @@ class _AddNewCardSheetState extends State<AddNewCardSheet> {
           ),
           SizedBox(height: 12.h),
           AuthField(
-              controller: _cardNumberController,
-              hintText: '3571  399507  50832'),
+            controller: _cardNumberController,
+            hintText: '3571  399507  5083',
+            keyboardType: TextInputType.number,
+            inputFormatters: [
+              CardNumberInputFormatter(),
+            ],
+          ),
           SizedBox(height: 20.h),
           Row(
             children: [
@@ -70,7 +77,13 @@ class _AddNewCardSheetState extends State<AddNewCardSheet> {
                     ),
                     SizedBox(height: 12.h),
                     AuthField(
-                        controller: _expireDateController, hintText: '07/22'),
+                      controller: _expireDateController,
+                      hintText: '07/22',
+                      keyboardType: TextInputType.datetime,
+                      inputFormatters: [
+                        DateInputFormatter(),
+                      ],
+                    ),
                   ],
                 ),
               ),

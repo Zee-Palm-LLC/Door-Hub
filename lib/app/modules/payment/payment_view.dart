@@ -72,7 +72,6 @@ class _PaymentMethodViewState extends State<PaymentMethodView> {
                     onTap: () {
                       showModalBottomSheet(
                           context: context,
-                          isScrollControlled: true,
                           builder: (context) {
                             return const AddNewCardSheet();
                           });

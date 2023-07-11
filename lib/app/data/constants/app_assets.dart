@@ -65,6 +65,7 @@ class AppAssets {
   static String kAttachment = 'assets/icons/attachment.svg';
   static String kEmoji = 'assets/icons/emoji.svg';
   static String kMyCard = 'assets/icons/my_card.png';
+  static String kServiceProvider = 'assets/icons/service_provider.png';
 
   // Images.
   static String kOnboardingFirst = 'assets/images/onboarding_first.png';

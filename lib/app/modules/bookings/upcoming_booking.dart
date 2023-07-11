@@ -12,7 +12,9 @@ class UpComingBookings extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         separatorBuilder: (context, index) => SizedBox(height: 10.h),
         itemBuilder: (context, index) {
-          return const UpComingBookingCard();
+          return UpComingBookingCard(
+            index: index,
+          );
         });
   }
 }

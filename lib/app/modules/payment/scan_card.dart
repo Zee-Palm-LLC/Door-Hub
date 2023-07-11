@@ -17,7 +17,6 @@ class _CreditCardScannerState extends State<CreditCardScanner> {
   CardScanOptions scanOptions = const CardScanOptions(
     scanCardHolderName: true,
     validCardsToScanBeforeFinishingScan: 5,
-    
     possibleCardHolderNamePositions: [
       CardHolderNameScanPosition.aboveCardNumber,
     ],
