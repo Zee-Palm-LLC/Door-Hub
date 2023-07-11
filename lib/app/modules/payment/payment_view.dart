@@ -72,16 +72,18 @@ class _PaymentMethodViewState extends State<PaymentMethodView> {
                     onTap: () {
                       showModalBottomSheet(
                           context: context,
+                          isScrollControlled: true,
                           builder: (context) {
                             return const AddNewCardSheet();
                           });
                     },
+                    titleColor: AppColors.kAccent1,
                     payment: PaymentModel(
                       id: '1',
-                      color: AppColors.kAccent4,
                       cardNumber: r'USD 500',
                       expireDate: 'Exp 04/2023',
-                      image: AppAssets.kPaymentMethod,
+                      image: AppAssets.kMyCard,
+
                     ),
                   )
                 ],

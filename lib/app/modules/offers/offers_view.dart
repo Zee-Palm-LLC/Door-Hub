@@ -1,4 +1,5 @@
 import 'package:door_hub/app/data/constants/constants.dart';
+import 'package:door_hub/app/model/services_model.dart';
 import 'package:door_hub/app/modules/categories/components/sub_category_grid_card.dart';
 import 'package:door_hub/app/modules/categories/components/sub_category_list_card.dart';
 import 'package:door_hub/app/modules/widgets/buttons/custom_icon_button.dart';
@@ -59,7 +60,9 @@ class _OffersViewState extends State<OffersView> {
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {
-                        return const SubCategoryListCard();
+                        return  SubCategoryListCard(
+                          service: allServices[index],
+                        );
                       },
                       separatorBuilder: (context, index) => const Divider(),
                       itemCount: 5),
@@ -73,7 +76,9 @@ class _OffersViewState extends State<OffersView> {
                         crossAxisSpacing: 10.w),
                     itemCount: 6,
                     itemBuilder: (context, index) {
-                      return const SubCategoryGridCard();
+                      return SubCategoryGridCard(
+                        service: allServices[index],
+                      );
                     },
                   ),
                   crossFadeState: _isGridView

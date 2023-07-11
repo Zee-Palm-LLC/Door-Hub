@@ -20,10 +20,26 @@ class HomeServicesCard extends StatelessWidget {
           Container(
             width: 139.w,
             height: 164.h,
+            padding: EdgeInsets.all(9.h),
+            alignment: Alignment.topLeft,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.r),
                 image: DecorationImage(
                     image: AssetImage(service.image), fit: BoxFit.cover)),
+            child: service.discount != null
+                ? Container(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 5.w, vertical: 3.h),
+                    decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.circular(20.r)),
+                    child: Text(
+                      service.discount!,
+                      style: AppTypography.kMedium12
+                          .copyWith(color: AppColors.kWhite),
+                    ),
+                  )
+                : null,
           ),
           const Spacer(),
           Text(service.name, style: AppTypography.kMedium14),

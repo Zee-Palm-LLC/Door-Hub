@@ -39,7 +39,7 @@ class _AddNewCardSheetState extends State<AddNewCardSheet> {
                   isBorder: true,
                   onTap: () {
                     Get.back();
-                    Get.to(()=>const CreditCardScanner());
+                    Get.to(() => const CreditCardScanner());
                   })
             ],
           ),
@@ -109,10 +109,10 @@ class _AddNewCardSheetState extends State<AddNewCardSheet> {
           ),
           SizedBox(height: 20.h),
           PrimaryButton(
-            onTap: (){},
+            onTap: () {},
             text: 'Add Card',
             color: AppColors.kInput,
-          )
+          ),
         ],
       ),
     );

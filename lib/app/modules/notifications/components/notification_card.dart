@@ -71,8 +71,18 @@ class _NotificationCardState extends State<NotificationCard> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(widget.notification.notificationMessage,
-                    style: AppTypography.kMedium16),
+                RichText(
+                  text: TextSpan(
+                      text: widget.notification.notificationAbout,
+                      style: AppTypography.kMedium16.copyWith(color: Colors.black),
+                      children: [
+                        TextSpan(
+                            text: widget.notification.notificationMessage,
+                            style: AppTypography.kMedium16
+                                .copyWith(color: const Color(0xFF9A9FA5))),
+                        TextSpan(text: widget.notification.notificationInfo, style: AppTypography.kMedium16)
+                      ]),
+                ),
                 SizedBox(height: 5.h),
                 Text(
                   CustomDateTimeFormat.notificationDateFormat(

@@ -1,4 +1,3 @@
-import 'package:door_hub/app/data/constants/app_colors.dart';
 import 'package:door_hub/app/data/constants/constants.dart';
 import 'package:door_hub/app/model/onboarding.dart';
 import 'package:door_hub/app/modules/auth/sign_in.dart';
@@ -75,15 +74,13 @@ class OnboardingScreenState extends State<OnboardingScreen> {
                     curve: Curves.easeInOut,
                   );
                 })
-              : Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: AppSpacing.fiftyHorizontal),
-                  child: PrimaryButton(
-                    onTap: () {
-                      Get.offAll(() => const SignIn());
-                    },
-                    text: 'Get Started',
-                  ),
+              : PrimaryButton(
+                  onTap: () {
+                    Get.offAll(() => const SignIn(),
+                        transition: Transition.zoom);
+                  },
+                  width: 166.w,
+                  text: 'Get Started',
                 ),
           SizedBox(height: 20.h),
         ],

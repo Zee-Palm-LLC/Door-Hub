@@ -155,7 +155,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 color: AppColors.kHint,
               ),
               SideMenu(
-                onPressed: () {},
                 isSelected: false,
                 icon: AppAssets.kHelp,
                 text: 'Color Scheme',

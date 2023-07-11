@@ -72,7 +72,7 @@ class ServiceSheet extends StatelessWidget {
             Expanded(
               child: PrimaryButton(
                 onTap: bookCallback!,
-                text: 'Book Now',
+                text: bookText,
               ),
             )
           ],

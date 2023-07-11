@@ -29,7 +29,7 @@ class CustomDropDown extends StatelessWidget {
           items: items.map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(
               value: value,
-              child: Text(value, style: AppTypography.kMedium14),
+              child: Text(value, style: AppTypography.kMedium14.copyWith(color: Colors.black)),
             );
           }).toList(),
         ),

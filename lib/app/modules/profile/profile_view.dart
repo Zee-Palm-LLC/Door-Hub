@@ -2,9 +2,7 @@ import 'package:door_hub/app/data/constants/constants.dart';
 import 'package:door_hub/app/modules/auth/components/auth_field.dart';
 import 'package:door_hub/app/modules/auth/components/country_picker.dart';
 import 'package:door_hub/app/modules/profile/components/profile_image_card.dart';
-import 'package:door_hub/app/modules/widgets/buttons/custom_button.dart';
-import 'package:door_hub/app/modules/widgets/containers/primary_container.dart';
-import 'package:door_hub/app/modules/widgets/texts/custom_header_text.dart';
+import 'package:door_hub/app/modules/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -102,6 +100,7 @@ class _ProfileViewState extends State<ProfileView> {
                 AuthField(
                   controller: _emailController,
                   hintText: 'Email',
+                  keyboardType: TextInputType.emailAddress,
                 ),
                 SizedBox(height: 24.h),
                 Text('Gender', style: AppTypography.kMedium15),
@@ -116,12 +115,15 @@ class _ProfileViewState extends State<ProfileView> {
                 AuthField(
                   controller: _dobController,
                   hintText: '06/11/1998',
+                  keyboardType: TextInputType.datetime,
                 ),
               ],
-            ))
+            )),
+            SizedBox(height: 250.h),
           ],
         ),
       ),
     );
   }
 }
+

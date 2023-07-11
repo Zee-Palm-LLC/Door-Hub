@@ -106,7 +106,7 @@ class _CalendarViewState extends State<CalendarView> {
             PrimaryContainer(
               child: TableCalendar<Event>(
                 firstDay: kFirstDay,
-                lastDay: kLastDay,
+                lastDay: kLastDay,    
                 availableGestures: AvailableGestures.none,
                 headerStyle: CustomCalendarStyle.getStyle(),
                 focusedDay: _focusedDay,

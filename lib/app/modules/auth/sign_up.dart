@@ -45,12 +45,12 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.kWhite,
+
       appBar: AppBar(
         leading: const BackButton(),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: AppSpacing.twentyHorizontal),
-        physics: const BouncingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -165,7 +165,9 @@ class _SignUpState extends State<SignUp> {
               child: PrimaryButton(
                 onTap: () {
                   if (isFormValidated) {
-                    Get.to(() => const VerificationCode());
+                    Get.to(() => const VerificationCode(),
+                    transition: Transition.zoom
+                    );
                   } else {
                     _shakeKey.currentState?.shake();
                   }
@@ -191,6 +193,7 @@ class _SignUpState extends State<SignUp> {
                 ),
               ],
             ),
+            SizedBox(height: 260.h,)
           ],
         ),
       ),

@@ -1,6 +1,7 @@
 import 'package:door_hub/app/data/constants/constants.dart';
 import 'package:door_hub/app/model/property_type.dart';
 import 'package:door_hub/app/model/services_model.dart';
+import 'package:door_hub/app/modules/categories/components/detail_image_header.dart';
 import 'package:door_hub/app/modules/categories/components/property_type_card.dart';
 import 'package:door_hub/app/modules/categories/components/quantity_card.dart';
 import 'package:door_hub/app/modules/categories/components/service_sheet.dart';
@@ -8,7 +9,6 @@ import 'package:door_hub/app/modules/widgets/containers/primary_container.dart';
 import 'package:door_hub/app/modules/widgets/texts/custom_header_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 
 class ServicesDetailView extends StatefulWidget {
   final ServicesModel services;
@@ -32,26 +32,7 @@ class _ServicesDetailViewState extends State<ServicesDetailView> {
           height: MediaQuery.of(context).size.height,
           child: Stack(
             children: [
-              Container(
-                height: 270.h,
-                width: Get.width,
-                padding: EdgeInsets.all(12.h),
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                  image: AssetImage(widget.services.image),
-                  fit: BoxFit.cover,
-                )),
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        widget.services.name,
-                        style: AppTypography.kBold24
-                            .copyWith(color: AppColors.kWhite),
-                      )
-                    ]),
-              ),
+             DetailImageHeader(service: widget.services),
               Positioned(
                 top: 228.h,
                 left: 20.w,

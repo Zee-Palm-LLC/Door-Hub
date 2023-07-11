@@ -4,14 +4,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SideMenu extends StatelessWidget {
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final String text;
   final String icon;
   final bool isSelected;
   const SideMenu(
       {super.key,
       this.isSelected = false,
-      required this.onPressed,
+      this.onPressed,
       required this.text,
       required this.icon});
 

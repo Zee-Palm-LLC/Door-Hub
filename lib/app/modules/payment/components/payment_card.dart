@@ -3,17 +3,18 @@ import 'package:door_hub/app/model/payment_model.dart';
 import 'package:door_hub/app/modules/widgets/buttons/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class PaymentCard extends StatelessWidget {
   final PaymentModel payment;
   final VoidCallback onTap;
   final bool? selectedPayment;
+  final Color? titleColor;
   const PaymentCard({
     super.key,
     required this.payment,
     required this.onTap,
     this.selectedPayment,
+    this.titleColor,
   });
 
   @override
@@ -26,16 +27,20 @@ class PaymentCard extends StatelessWidget {
             height: 55.h,
             width: 55.w,
             alignment: Alignment.center,
-            decoration:
-                BoxDecoration(shape: BoxShape.circle, color: payment.color),
-            child: SvgPicture.asset(payment.image),
+            decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  image: AssetImage(payment.image),
+                  fit: BoxFit.cover,
+                )),
           ),
           SizedBox(width: 16.w),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(payment.cardNumber, style: AppTypography.kMedium16),
+                Text(payment.cardNumber,
+                    style: AppTypography.kMedium16.copyWith(color: titleColor)),
                 SizedBox(height: 5.h),
                 Text(
                   payment.expireDate,

@@ -21,6 +21,7 @@ class Main extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: const Size(375, 844),
+      useInheritedMediaQuery: true,
       builder: (context, child) {
         return GestureDetector(
           behavior: HitTestBehavior.opaque,

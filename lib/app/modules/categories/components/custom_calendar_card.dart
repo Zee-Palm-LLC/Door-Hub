@@ -45,6 +45,10 @@ class _CustomCalendarCardState extends State<CustomCalendarCard> {
       calendarFormat: CalendarFormat.month,
       startingDayOfWeek: StartingDayOfWeek.sunday,
       calendarStyle: CalendarStyle(
+        outsideDaysVisible: false,
+        defaultTextStyle: AppTypography.kMedium15,
+        holidayTextStyle: AppTypography.kMedium15,
+        weekendTextStyle: AppTypography.kMedium15,
         selectedDecoration: const BoxDecoration(
           color: AppColors.kPrimary,
           shape: BoxShape.circle,

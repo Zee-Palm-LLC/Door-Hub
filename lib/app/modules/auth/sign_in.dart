@@ -3,11 +3,7 @@ import 'package:door_hub/app/modules/auth/components/auth_field.dart';
 import 'package:door_hub/app/modules/auth/components/country_picker.dart';
 import 'package:door_hub/app/modules/auth/sign_up.dart';
 import 'package:door_hub/app/modules/landing_page/landing_page.dart';
-import 'package:door_hub/app/modules/widgets/animations/shake_animation.dart';
-import 'package:door_hub/app/modules/widgets/buttons/custom_social_button.dart';
-import 'package:door_hub/app/modules/widgets/buttons/custom_text_button.dart';
-import 'package:door_hub/app/modules/widgets/buttons/primary_button.dart';
-import 'package:door_hub/app/modules/widgets/dividers/custom_vertical_divider.dart';
+import 'package:door_hub/app/modules/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -129,7 +125,7 @@ class _SignInState extends State<SignIn> {
                         .copyWith(color: AppColors.kNeutral)),
                 CustomTextButton(
                   onPressed: () {
-                    Get.to(() => const SignUp());
+                    Get.to(() => const SignUp(), transition: Transition.zoom);
                   },
                   text: 'Sign Up',
                 )

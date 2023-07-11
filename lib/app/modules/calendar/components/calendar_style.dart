@@ -9,6 +9,20 @@ class CustomCalendarStyle {
       formatButtonVisible: false,
       titleCentered: true,
       titleTextStyle: AppTypography.kMedium18,
+      leftChevronIcon: Container(
+        height: 36.h,
+        width: 36.w,
+        decoration:
+            const BoxDecoration(color: AppColors.kInput, shape: BoxShape.circle),
+        child: Icon(Icons.arrow_back_ios_new_rounded, size: 16.h),
+      ),
+      rightChevronIcon: Container(
+        height: 36.h,
+        width: 36.w,
+        decoration:
+            const BoxDecoration(color: AppColors.kInput, shape: BoxShape.circle),
+        child: Icon(Icons.arrow_forward_ios_rounded, size: 16.h),
+      ),
       headerMargin: EdgeInsets.only(bottom: 23.h),
       leftChevronMargin: EdgeInsets.zero,
       leftChevronPadding: EdgeInsets.zero,
