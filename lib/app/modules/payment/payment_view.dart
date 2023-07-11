@@ -57,8 +57,7 @@ class _PaymentMethodViewState extends State<PaymentMethodView> {
                               },
                               selectedPayment: _selectedPayment == index);
                         },
-                        separatorBuilder: (context, index) =>
-                            Divider(height: 20.h),
+                        separatorBuilder: (context, index) => Divider(height: 20.h),
                         itemCount: paymentMethods.length))
               ]),
             ),
@@ -72,6 +71,7 @@ class _PaymentMethodViewState extends State<PaymentMethodView> {
                     onTap: () {
                       showModalBottomSheet(
                           context: context,
+                          isScrollControlled: true,
                           builder: (context) {
                             return const AddNewCardSheet();
                           });
@@ -82,12 +82,11 @@ class _PaymentMethodViewState extends State<PaymentMethodView> {
                       cardNumber: r'USD 500',
                       expireDate: 'Exp 04/2023',
                       image: AppAssets.kMyCard,
-
                     ),
                   )
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),

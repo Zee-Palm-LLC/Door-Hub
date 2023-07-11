@@ -4,7 +4,6 @@ import 'package:door_hub/app/modules/widgets/containers/primary_container.dart';
 import 'package:door_hub/app/modules/widgets/texts/custom_header_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class ServiceProviderCard extends StatelessWidget {
   const ServiceProviderCard({super.key});
@@ -34,10 +33,12 @@ class ServiceProviderCard extends StatelessWidget {
             Container(
               height: 55.h,
               width: 55.w,
-              padding: EdgeInsets.all(17.h),
-              decoration: const BoxDecoration(
-                  shape: BoxShape.circle, color: AppColors.kAccent1),
-              child: SvgPicture.asset(AppAssets.kAcRepair),
+              alignment: Alignment.center,
+              decoration:  BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(color: AppColors.kInput)
+                  ),
+              child: Image.asset(AppAssets.kServiceProvider),
             ),
             SizedBox(width: 16.w),
             Column(

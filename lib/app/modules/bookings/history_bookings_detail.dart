@@ -1,5 +1,6 @@
 import 'package:door_hub/app/data/constants/constants.dart';
 import 'package:door_hub/app/model/address_model.dart';
+import 'package:door_hub/app/model/booking_model.dart';
 import 'package:door_hub/app/modules/address/components/address_card.dart';
 import 'package:door_hub/app/modules/bookings/components/custom_expanded_tile.dart';
 import 'package:door_hub/app/modules/bookings/components/service_provider_card.dart';
@@ -13,7 +14,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HistoryBookingsDetail extends StatelessWidget {
-  const HistoryBookingsDetail({Key? key}) : super(key: key);
+  final BookingModel bookings;
+  const HistoryBookingsDetail({Key? key, required this.bookings})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +35,7 @@ class HistoryBookingsDetail extends StatelessWidget {
                   CustomHeaderText(text: 'Reference Code:', fontSize: 18.sp),
                   SizedBox(width: 5.w),
                   Text(
-                    '#D-571224',
+                    bookings.referenceCode,
                     style: AppTypography.kBold16
                         .copyWith(color: const Color(0xFFFC944D)),
                   )

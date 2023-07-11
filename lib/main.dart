@@ -29,10 +29,10 @@ class Main extends StatelessWidget {
             FocusManager.instance.primaryFocus?.unfocus();
           },
           child: GetMaterialApp(
+            useInheritedMediaQuery: true,
             title: 'Door Hub',
             debugShowCheckedModeBanner: false,
-            scrollBehavior: const ScrollBehavior()
-                .copyWith(physics: const BouncingScrollPhysics()),
+            scrollBehavior: const ScrollBehavior().copyWith(physics: const BouncingScrollPhysics()),
             defaultTransition: Transition.fadeIn,
             theme: AppTheme.lightTheme,
             locale: const Locale('en_US'),

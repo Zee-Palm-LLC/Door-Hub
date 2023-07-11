@@ -1,10 +1,10 @@
+import 'package:animations/animations.dart';
 import 'package:door_hub/app/data/constants/constants.dart';
 import 'package:door_hub/app/model/services_model.dart';
 import 'package:door_hub/app/modules/categories/components/rating_widget.dart';
 import 'package:door_hub/app/modules/categories/services_detail_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 
 class SubCategoryListCard extends StatelessWidget {
   final ServicesModel service;
@@ -12,55 +12,63 @@ class SubCategoryListCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        Get.to(() => ServicesDetailView(services: service));
+    return OpenContainer(
+      transitionType: ContainerTransitionType.fadeThrough,
+      openBuilder: (BuildContext _, VoidCallback openContainer) {
+        return ServicesDetailView(services: service);
       },
-      child: Row(
-        children: [
-          Container(
-            height: 116.h,
-            width: 105.w,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.r),
-                image: DecorationImage(
-                    image: AssetImage(service.image), fit: BoxFit.cover)),
-          ),
-          SizedBox(width: 16.w),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
+      closedShape: const RoundedRectangleBorder(),
+      closedElevation: 0.0,
+      closedBuilder: (BuildContext _, VoidCallback openContainer) {
+        return InkWell(
+          onTap: openContainer,
+          child: Row(
+            children: [
+              Container(
+                height: 116.h,
+                width: 105.w,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.r),
+                    image: DecorationImage(
+                        image: AssetImage(service.image), fit: BoxFit.cover)),
+              ),
+              SizedBox(width: 16.w),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    RatingWidget(
-                      service: service,
+                    Row(
+                      children: [
+                        RatingWidget(
+                          service: service,
+                        ),
+                        const Spacer(),
+                        const Icon(Icons.more_horiz)
+                      ],
                     ),
-                    const Spacer(),
-                    const Icon(Icons.more_horiz)
+                    SizedBox(height: 5.h),
+                    Text(service.name, style: AppTypography.kMedium14),
+                    SizedBox(height: 4.h),
+                    Text('Starts From',
+                        style: AppTypography.kLight12.copyWith(
+                            color: AppColors.kNeutral04.withOpacity(0.75))),
+                    SizedBox(height: 8.h),
+                    Container(
+                      padding: EdgeInsets.symmetric(
+                          vertical: 4.5.h, horizontal: 8.w),
+                      decoration: BoxDecoration(
+                          color: AppColors.kLime,
+                          borderRadius: BorderRadius.circular(5.r)),
+                      child: Text('\$ ${service.price.toInt()}',
+                          style: AppTypography.kMedium12),
+                    )
                   ],
                 ),
-                SizedBox(height: 5.h),
-                Text(service.name, style: AppTypography.kMedium14),
-                SizedBox(height: 4.h),
-                Text('Starts From',
-                    style: AppTypography.kLight12.copyWith(
-                        color: AppColors.kNeutral04.withOpacity(0.75))),
-                SizedBox(height: 8.h),
-                Container(
-                  padding:
-                      EdgeInsets.symmetric(vertical: 4.5.h, horizontal: 8.w),
-                  decoration: BoxDecoration(
-                      color: AppColors.kLime,
-                      borderRadius: BorderRadius.circular(5.r)),
-                  child:
-                      Text('\$ ${service.price.toInt()}', style: AppTypography.kMedium12),
-                )
-              ],
-            ),
-          )
-        ],
-      ),
+              )
+            ],
+          ),
+        );
+      },
     );
   }
 }
