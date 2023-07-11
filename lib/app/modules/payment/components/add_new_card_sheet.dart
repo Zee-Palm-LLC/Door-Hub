@@ -25,95 +25,102 @@ class _AddNewCardSheetState extends State<AddNewCardSheet> {
   final TextEditingController _cvvCodeController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return PrimaryContainer(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Row(
+    return Padding(
+      padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+      child: BottomSheet(
+        onClosing: () {},
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(8.r))),
+        enableDrag: false,
+        showDragHandle: false,
+        builder: (context) => Padding(
+          padding: EdgeInsets.all(16.h),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              CustomHeaderText(text: 'Add New Card', fontSize: 18.sp),
-              const Spacer(),
-              CustomButton(
-                  text: 'Scan',
-                  icon: AppAssets.kScan,
-                  isBorder: true,
-                  onTap: () {
-                    Get.back();
-                    Get.to(() => const CreditCardScanner());
-                  })
-            ],
-          ),
-          SizedBox(height: 20.h),
-          Row(
-            children: [
-              Text('Card Number', style: AppTypography.kLight14),
-              SizedBox(width: 5.w),
-              SvgPicture.asset(AppAssets.kInfo)
-            ],
-          ),
-          SizedBox(height: 12.h),
-          AuthField(
-              controller: _cardNumberController,
-              hintText: '3571  399507  50832'),
-          SizedBox(height: 20.h),
-          Row(
-            children: [
-              Expanded(
-                child: Column(
-                  children: [
-                    Row(
+              Row(
+                children: [
+                  CustomHeaderText(text: 'Add New Card', fontSize: 18.sp),
+                  const Spacer(),
+                  CustomButton(
+                      text: 'Scan',
+                      icon: AppAssets.kScan,
+                      isBorder: true,
+                      onTap: () {
+                        Get.back();
+                        Get.to(() => const CreditCardScanner());
+                      })
+                ],
+              ),
+              SizedBox(height: 20.h),
+              Row(
+                children: [
+                  Text('Card Number', style: AppTypography.kLight14),
+                  SizedBox(width: 5.w),
+                  SvgPicture.asset(AppAssets.kInfo)
+                ],
+              ),
+              SizedBox(height: 12.h),
+              AuthField(controller: _cardNumberController, hintText: '3571  399507  50832'),
+              SizedBox(height: 20.h),
+              Row(
+                children: [
+                  Expanded(
+                    child: Column(
                       children: [
-                        Text('Expire Ends', style: AppTypography.kLight14),
-                        SizedBox(width: 5.w),
-                        SvgPicture.asset(AppAssets.kInfo)
+                        Row(
+                          children: [
+                            Text('Expire Ends', style: AppTypography.kLight14),
+                            SizedBox(width: 5.w),
+                            SvgPicture.asset(AppAssets.kInfo)
+                          ],
+                        ),
+                        SizedBox(height: 12.h),
+                        AuthField(controller: _expireDateController, hintText: '07/22'),
                       ],
                     ),
-                    SizedBox(height: 12.h),
-                    AuthField(
-                        controller: _expireDateController, hintText: '07/22'),
-                  ],
-                ),
-              ),
-              SizedBox(width: 8.w),
-              Expanded(
-                child: Column(
-                  children: [
-                    Row(
+                  ),
+                  SizedBox(width: 8.w),
+                  Expanded(
+                    child: Column(
                       children: [
-                        Text('Cvv', style: AppTypography.kLight14),
-                        SizedBox(width: 5.w),
-                        SvgPicture.asset(AppAssets.kInfo)
+                        Row(
+                          children: [
+                            Text('Cvv', style: AppTypography.kLight14),
+                            SizedBox(width: 5.w),
+                            SvgPicture.asset(AppAssets.kInfo)
+                          ],
+                        ),
+                        SizedBox(height: 12.h),
+                        AuthField(controller: _cvvCodeController, hintText: '483'),
                       ],
                     ),
-                    SizedBox(height: 12.h),
-                    AuthField(controller: _cvvCodeController, hintText: '483'),
-                  ],
-                ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 20.h),
+              Row(
+                children: [
+                  CustomCheckBox(
+                    value: isPrimaryCard,
+                    onChanged: (value) {
+                      setState(() {
+                        isPrimaryCard = value;
+                      });
+                    },
+                  ),
+                  SizedBox(width: 10.w),
+                  Text('Save as a primary card', style: AppTypography.kMedium15),
+                ],
+              ),
+              SizedBox(height: 20.h),
+              PrimaryButton(
+                onTap: () {},
+                text: 'Add Card',
+                color: AppColors.kInput,
               ),
             ],
           ),
-          SizedBox(height: 20.h),
-          Row(
-            children: [
-              CustomCheckBox(
-                value: isPrimaryCard,
-                onChanged: (value) {
-                  setState(() {
-                    isPrimaryCard = value;
-                  });
-                },
-              ),
-              SizedBox(width: 10.w),
-              Text('Save as a primary card', style: AppTypography.kMedium15),
-            ],
-          ),
-          SizedBox(height: 20.h),
-          PrimaryButton(
-            onTap: () {},
-            text: 'Add Card',
-            color: AppColors.kInput,
-          ),
-        ],
+        ),
       ),
     );
   }
