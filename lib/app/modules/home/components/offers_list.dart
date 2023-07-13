@@ -9,6 +9,7 @@ class OfferList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return PrimaryContainer(
         height: 200.h,
         padding: EdgeInsets.only(top: 16.h, bottom: 16.h),

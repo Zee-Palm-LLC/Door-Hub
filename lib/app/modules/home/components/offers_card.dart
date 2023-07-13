@@ -9,12 +9,17 @@ class OffersCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
     return Container(
         width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 19.h),
         margin: EdgeInsets.symmetric(horizontal: 5.w),
         decoration: BoxDecoration(
-          color: const Color(0xFFEAF6EF),
+          color: isDarkMode(context)
+              ? AppColors.kSecondary
+              : const Color(0xFFEAF6EF),
           borderRadius: BorderRadius.circular(10.r),
         ),
         child: Column(

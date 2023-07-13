@@ -17,25 +17,34 @@ class CustomIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
     return GestureDetector(
       onTap: onTap,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         padding: EdgeInsets.all(8.h),
         decoration: BoxDecoration(
-          color: isEnabled ? Colors.white : Colors.grey[300],
+          color: isEnabled
+              ? isDarkMode(context)
+                  ? AppColors.kContentColor
+                  : Colors.white
+              : isDarkMode(context)
+                  ? Colors.black
+                  : Colors.grey[300],
           borderRadius: BorderRadius.circular(isCircle ? 100.r : 10.r),
           boxShadow: isEnabled
               ? [
-                  const BoxShadow(
-                    color: Colors.grey,
-                    offset: Offset(4, 4),
+                  BoxShadow(
+                    color: isDarkMode(context) ? Colors.black : Colors.grey,
+                    offset: const Offset(4, 4),
                     blurRadius: 15,
                     spreadRadius: 1,
                   ),
-                  const BoxShadow(
-                    color: Colors.white,
-                    offset: Offset(-4, -4),
+                  BoxShadow(
+                    color: isDarkMode(context) ? Colors.black : Colors.white,
+                    offset: const Offset(-4, -4),
                     blurRadius: 15,
                     spreadRadius: 1,
                   ),
@@ -45,7 +54,12 @@ class CustomIconButton extends StatelessWidget {
         child: SvgPicture.asset(
           icon,
           colorFilter: ColorFilter.mode(
-              isEnabled ? AppColors.kPrimary : Colors.grey, BlendMode.srcIn),
+              isEnabled
+                  ? isDarkMode(context)
+                      ? AppColors.kWhite
+                      : AppColors.kPrimary
+                  : Colors.grey,
+              BlendMode.srcIn),
         ),
       ),
     );

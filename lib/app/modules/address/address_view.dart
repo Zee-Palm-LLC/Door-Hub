@@ -28,6 +28,7 @@ class _AddressViewState extends State<AddressView> {
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: Column(
           children: [
+            widget.isCheckOutPage ? SizedBox(height: 20.h) : const SizedBox(),
             widget.isCheckOutPage
                 ? PrimaryContainer(
                     child: Row(

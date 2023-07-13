@@ -108,7 +108,7 @@ class _CalendarViewState extends State<CalendarView> {
                 firstDay: kFirstDay,
                 lastDay: kLastDay,    
                 availableGestures: AvailableGestures.none,
-                headerStyle: CustomCalendarStyle.getStyle(),
+                headerStyle: CustomCalendarStyle.getStyle(context),
                 focusedDay: _focusedDay,
                 selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
                 rangeStartDay: _rangeStart,

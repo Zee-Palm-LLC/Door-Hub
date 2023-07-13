@@ -9,6 +9,9 @@ class ProfileImageCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
     return GestureDetector(
       onTap: onTap,
       child: Row(
@@ -21,12 +24,18 @@ class ProfileImageCard extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Ashfak Sayem',
-                  style: AppTypography.kMedium15
-                      .copyWith(color: textColor ?? AppColors.kWhite)),
+              Text(
+                'John Doe',
+                style: AppTypography.kMedium15.copyWith(
+                  color: textColor ??
+                      (isDarkMode(context)
+                          ? AppColors.kWhite
+                          : AppColors.kWhite),
+                ),
+              ),
               SizedBox(height: 5.h),
               Text(
-                'ashfaksayem@gmail.com',
+                'johndoe@gmail.com',
                 style: AppTypography.kLight14.copyWith(color: AppColors.kHint),
               ),
             ],

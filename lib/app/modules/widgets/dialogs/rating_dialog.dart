@@ -1,5 +1,3 @@
-import 'package:door_hub/app/data/constants/app_assets.dart';
-import 'package:door_hub/app/data/constants/app_typography.dart';
 import 'package:door_hub/app/data/constants/constants.dart';
 import 'package:door_hub/app/modules/widgets/buttons/primary_button.dart';
 import 'package:door_hub/app/modules/widgets/dialogs/components/rating_field.dart';
@@ -13,6 +11,9 @@ class RatingDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
     return Transform.scale(
       scale: scale.value,
       child: Opacity(
@@ -39,22 +40,24 @@ class RatingDialog extends StatelessWidget {
               Row(
                 children: [
                   Expanded(
-                    flex: 4,
+                      flex: 4,
                       child: PrimaryButton(
-                    onTap: () {},
-                    text: 'No, Thanks',
-                    width: 60.w,
-                    color: AppColors.kWhite,
-                    isBorder: true,
-                  )),
+                        onTap: () {},
+                        text: 'No, Thanks',
+                        width: 60.w,
+                        color: isDarkMode(context)
+                            ? AppColors.kContentColor
+                            : AppColors.kWhite,
+                        isBorder: true,
+                      )),
                   SizedBox(width: 10.w),
                   Expanded(
-                    flex: 6,
+                      flex: 6,
                       child: PrimaryButton(
-                    onTap: () {},
-                    text: 'Rate on Play Store',
-                    width: 60.w,
-                  )),
+                        onTap: () {},
+                        text: 'Rate on Play Store',
+                        width: 60.w,
+                      )),
                 ],
               )
             ],

@@ -48,6 +48,9 @@ class CategorySeeAllButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
     return ButtonAnimation(
       onTap: onTap,
       child: Column(
@@ -56,8 +59,10 @@ class CategorySeeAllButton extends StatelessWidget {
             height: 58.h,
             width: 58.w,
             alignment: Alignment.center,
-            decoration: const BoxDecoration(
-              color: Color(0xFFECECEC),
+            decoration: BoxDecoration(
+              color: isDarkMode(context)
+                  ? AppColors.kContentColor
+                  : const Color(0xFFECECEC),
               shape: BoxShape.circle,
             ),
             child: const Icon(Icons.arrow_forward),

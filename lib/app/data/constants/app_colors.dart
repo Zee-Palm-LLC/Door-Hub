@@ -18,4 +18,11 @@ class AppColors {
   static const Color kNeutral01 = Color(0xFFFCFCFC);
   static const Color kNeutral03 = Color(0xFFEFEFEF);
   static const Color kNeutral04 = Color(0xFF6F767E);
+
+  // Dark.
+  static const Color kDarkBackground = Color(0xFF0F1621);
+  static const Color kDarkSurfaceColor = Color(0xFF18202E);
+  static const Color kDarkInput = Color(0xFF18202E);
+  static const Color kDarkHint = Color(0xFF2F3643);
+  static const Color kContentColor = Color(0xFF2F3643);
 }

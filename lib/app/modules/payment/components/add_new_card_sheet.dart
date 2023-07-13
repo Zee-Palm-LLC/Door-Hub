@@ -25,6 +25,9 @@ class _AddNewCardSheetState extends State<AddNewCardSheet> {
   final TextEditingController _cvvCodeController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
     return Padding(
       padding:
           EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
@@ -34,6 +37,9 @@ class _AddNewCardSheetState extends State<AddNewCardSheet> {
             borderRadius: BorderRadius.vertical(top: Radius.circular(8.r))),
         enableDrag: false,
         showDragHandle: false,
+        backgroundColor: isDarkMode(context)
+            ? AppColors.kDarkSurfaceColor
+            : AppColors.kWhite,
         builder: (context) => Padding(
           padding: EdgeInsets.all(16.h),
           child: Column(
@@ -83,11 +89,11 @@ class _AddNewCardSheetState extends State<AddNewCardSheet> {
                         ),
                         SizedBox(height: 12.h),
                         AuthField(
-                            controller: _expireDateController,
-                            hintText: '07/22',
-                            keyboardType: TextInputType.datetime,
-                            inputFormatters: [DateInputFormatter()],
-                            ),
+                          controller: _expireDateController,
+                          hintText: '07/22',
+                          keyboardType: TextInputType.datetime,
+                          inputFormatters: [DateInputFormatter()],
+                        ),
                       ],
                     ),
                   ),
@@ -130,7 +136,8 @@ class _AddNewCardSheetState extends State<AddNewCardSheet> {
               PrimaryButton(
                 onTap: () {},
                 text: 'Add Card',
-                color: AppColors.kInput,
+                color:
+                    isDarkMode(context) ? AppColors.kContentColor : AppColors.kInput,
               ),
             ],
           ),

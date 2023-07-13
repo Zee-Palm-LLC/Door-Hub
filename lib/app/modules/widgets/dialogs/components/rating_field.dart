@@ -1,5 +1,7 @@
 import 'package:door_hub/app/data/constants/constants.dart';
+import 'package:door_hub/app/modules/widgets/animations/heart_animation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomRatingField extends StatefulWidget {
   final int maxRating;
@@ -50,24 +52,46 @@ class _CustomRatingFieldState extends State<CustomRatingField> {
     });
   }
 
+  void _handleHorizontalDragUpdate(DragUpdateDetails details) {
+    if (_isAnimating) return;
+
+    RenderBox box = context.findRenderObject() as RenderBox;
+    final starSize = 40.h;
+    final starCount = widget.maxRating;
+    final position = box.globalToLocal(details.globalPosition);
+    final dx = position.dx;
+
+    final rating = (dx / starSize).clamp(0, starCount.toDouble());
+
+    double newRating = rating.floor().toDouble();
+    if (newRating != _currentRating) {
+      setState(() {
+        _currentRating = newRating;
+      });
+      widget.onChanged(newRating);
+    }
+  }
+
   Widget _buildStar(int index) {
     Color starIconColor =
         index < _currentRating ? AppColors.kPrimary : AppColors.kHint;
 
-    double starSize = _pressedIndex == index ? 40 : 35;
-
     return GestureDetector(
       onTap: () => _handleTap(index),
+      onHorizontalDragUpdate: _handleHorizontalDragUpdate,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: AnimatedContainer(
-          curve: Curves.bounceOut,
-          duration: const Duration(milliseconds: 200),
-          width: 35,
-          height: 35,
+        child: HeartAnimationWidget(
+          isAnimating: _pressedIndex == index && _isAnimating,
+          duration: const Duration(milliseconds: 400),
+          onEnd: () {
+            setState(() {
+              _isAnimating = false;
+            });
+          },
           child: Icon(
             Icons.star_rounded,
-            size: starSize,
+            size: 40.h,
             color: starIconColor,
           ),
         ),

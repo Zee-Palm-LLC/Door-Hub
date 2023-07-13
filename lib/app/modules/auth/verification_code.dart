@@ -45,8 +45,11 @@ class _VerificationCodeState extends State<VerificationCode> {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: AppColors.kWhite,
+      backgroundColor:
+          isDarkMode(context) ? AppColors.kDarkBackground : AppColors.kWhite,
       appBar: AppBar(
         leading: const BackButton(),
       ),
@@ -79,14 +82,21 @@ class _VerificationCodeState extends State<VerificationCode> {
             PrimaryButton(
               onTap: () {},
               text: 'Continue',
-              color: _formValidated ? null : AppColors.kInput,
+              color: _formValidated
+                  ? null
+                  : isDarkMode(context)
+                      ? AppColors.kDarkHint
+                      : AppColors.kInput,
             ),
             SizedBox(height: 74.h),
             Center(
               child: RichText(
                 text: TextSpan(
                     text: 'Resend Code in ',
-                    style: AppTypography.kLight16.copyWith(color: Colors.black),
+                    style: AppTypography.kLight16.copyWith(
+                        color: isDarkMode(context)
+                            ? AppColors.kWhite
+                            : Colors.black),
                     children: [
                       TextSpan(
                           text: '0 : $_timerSeconds',

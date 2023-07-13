@@ -43,10 +43,14 @@ class _SignUpState extends State<SignUp> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.kWhite,
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
 
+    return Scaffold(
+      backgroundColor:
+          isDarkMode(context) ? AppColors.kDarkBackground : AppColors.kWhite,
       appBar: AppBar(
+        backgroundColor: AppColors.kDarkBackground,
         leading: const BackButton(),
       ),
       body: SingleChildScrollView(
@@ -63,7 +67,9 @@ class _SignUpState extends State<SignUp> {
             SizedBox(height: 8.h),
             Container(
               decoration: BoxDecoration(
-                  color: AppColors.kInput,
+                  color: isDarkMode(context)
+                      ? AppColors.kContentColor
+                      : AppColors.kInput,
                   borderRadius: BorderRadius.circular(AppSpacing.radiusTen)),
               child: Row(
                 children: [
@@ -82,7 +88,7 @@ class _SignUpState extends State<SignUp> {
                       padding: EdgeInsets.only(top: 2.h),
                       child: AuthField(
                         controller: _firstNameController,
-                        padding: EdgeInsets.symmetric(horizontal: 5.w),
+                        padding: EdgeInsets.symmetric(horizontal: 15.w),
                         hintText: 'First Name',
                         onChanged: (value) {
                           setState(() {});
@@ -113,7 +119,9 @@ class _SignUpState extends State<SignUp> {
             // Number Field.
             Container(
               decoration: BoxDecoration(
-                  color: AppColors.kInput,
+                  color: isDarkMode(context)
+                      ? AppColors.kContentColor
+                      : AppColors.kInput,
                   borderRadius: BorderRadius.circular(AppSpacing.radiusTen)),
               child: Row(
                 children: [
@@ -134,7 +142,7 @@ class _SignUpState extends State<SignUp> {
                         },
                         hintText: 'Phone Number',
                         keyboardType: TextInputType.number,
-                        padding: EdgeInsets.symmetric(horizontal: 5.w),
+                        padding: EdgeInsets.symmetric(horizontal: 15.w),
                         inputFormatters: [
                           FilteringTextInputFormatter.deny(
                               RegExp(r'^0[0-9]*$')),
@@ -166,14 +174,17 @@ class _SignUpState extends State<SignUp> {
                 onTap: () {
                   if (isFormValidated) {
                     Get.to(() => const VerificationCode(),
-                    transition: Transition.zoom
-                    );
+                        transition: Transition.zoom);
                   } else {
                     _shakeKey.currentState?.shake();
                   }
                 },
                 text: 'Sign Up',
-                color: isFormValidated ? null : AppColors.kInput,
+                color: isFormValidated
+                    ? null
+                    : isDarkMode(context)
+                        ? AppColors.kDarkHint
+                        : AppColors.kInput,
               ),
             ),
             SizedBox(height: 5.h),

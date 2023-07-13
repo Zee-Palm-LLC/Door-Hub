@@ -16,6 +16,8 @@ class CustomDropDown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
     return SizedBox(
       width: 70.w,
       child: Center(
@@ -29,7 +31,11 @@ class CustomDropDown extends StatelessWidget {
           items: items.map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(
               value: value,
-              child: Text(value, style: AppTypography.kMedium14.copyWith(color: Colors.black)),
+              child: Text(value,
+                  style: AppTypography.kMedium14.copyWith(
+                      color: isDarkMode(context)
+                          ? AppColors.kWhite
+                          : Colors.black)),
             );
           }).toList(),
         ),

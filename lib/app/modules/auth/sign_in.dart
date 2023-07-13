@@ -23,8 +23,11 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: AppColors.kWhite,
+      backgroundColor:
+          isDarkMode(context) ? AppColors.kDarkBackground : AppColors.kWhite,
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: AppSpacing.twentyHorizontal),
         child: Column(
@@ -40,7 +43,9 @@ class _SignInState extends State<SignIn> {
             // Number Field.
             Container(
               decoration: BoxDecoration(
-                  color: AppColors.kInput,
+                  color: isDarkMode(context)
+                      ? AppColors.kContentColor
+                      : AppColors.kInput,
                   borderRadius: BorderRadius.circular(AppSpacing.radiusTen)),
               child: Row(
                 children: [
@@ -67,7 +72,7 @@ class _SignInState extends State<SignIn> {
                       },
                       hintText: 'Phone Number',
                       keyboardType: TextInputType.number,
-                      padding: EdgeInsets.symmetric(horizontal: 5.w),
+                      padding: EdgeInsets.symmetric(horizontal: 15.w),
                       inputFormatters: [
                         FilteringTextInputFormatter.digitsOnly,
                         FilteringTextInputFormatter.deny(RegExp(r'^0[0-9]*$'))
@@ -91,7 +96,11 @@ class _SignInState extends State<SignIn> {
                   }
                 },
                 text: 'Sign in',
-                color: isFormValidated ? null : AppColors.kInput,
+                color: isFormValidated
+                    ? null
+                    : isDarkMode(context)
+                        ? AppColors.kDarkHint
+                        : AppColors.kInput,
               ),
             ),
             SizedBox(height: 63.h),
@@ -112,7 +121,7 @@ class _SignInState extends State<SignIn> {
               child: PrimaryButton(
                 onTap: () {},
                 text: 'Continue as a Guest',
-                color: AppColors.kInput,
+                color: isDarkMode(context)?AppColors.kDarkHint:AppColors.kInput,
                 width: 240.w,
               ),
             ),

@@ -22,8 +22,8 @@ class _ProfileViewState extends State<ProfileView> {
 
   @override
   void initState() {
-    _phoneController.text = '3341713052';
-    _emailController.text = 'shameelirtaza@zeepalm.com';
+    _phoneController.text = '1234567898';
+    _emailController.text = 'johndoe@gmail.com';
     _genderController.text = 'Male';
     _dobController.text = '06/11/1998';
     super.initState();
@@ -31,6 +31,9 @@ class _ProfileViewState extends State<ProfileView> {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
     return Scaffold(
       appBar: AppBar(
         leading: const BackButton(),
@@ -52,10 +55,10 @@ class _ProfileViewState extends State<ProfileView> {
               ],
             ),
             SizedBox(height: 21.h),
-            const PrimaryContainer(
+            PrimaryContainer(
                 child: ProfileImageCard(
               onTap: null,
-              textColor: Colors.black,
+              textColor: isDarkMode(context) ? AppColors.kWhite : Colors.black,
             )),
             SizedBox(height: 16.h),
             PrimaryContainer(
@@ -67,7 +70,9 @@ class _ProfileViewState extends State<ProfileView> {
                 // Number Field.
                 Container(
                   decoration: BoxDecoration(
-                      color: AppColors.kInput,
+                      color: isDarkMode(context)
+                          ? AppColors.kContentColor
+                          : AppColors.kInput,
                       borderRadius:
                           BorderRadius.circular(AppSpacing.radiusTen)),
                   child: Row(
@@ -126,4 +131,3 @@ class _ProfileViewState extends State<ProfileView> {
     );
   }
 }
-

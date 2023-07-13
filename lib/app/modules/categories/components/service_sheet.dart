@@ -19,8 +19,11 @@ class ServiceSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
     return Container(
-      color: AppColors.kWhite,
+      color: isDarkMode(context) ? Colors.black : AppColors.kWhite,
       padding: EdgeInsets.only(left: 20.w, right: 20.w, bottom: 20.h),
       child: Column(mainAxisSize: MainAxisSize.min, children: [
         Row(
@@ -28,13 +31,17 @@ class ServiceSheet extends StatelessWidget {
             RichText(
               text: TextSpan(
                   text: 'Total:',
-                  style:
-                      AppTypography.kMedium14.copyWith(color: AppColors.kGrey),
+                  style: AppTypography.kMedium14.copyWith(
+                      color: isDarkMode(context)
+                          ? AppColors.kWhite
+                          : AppColors.kGrey),
                   children: [
                     TextSpan(
                         text: '  USD 150.50',
-                        style:
-                            AppTypography.kBold14.copyWith(color: Colors.black))
+                        style: AppTypography.kBold14.copyWith(
+                            color: isDarkMode(context)
+                                ? AppColors.kWhite
+                                : Colors.black))
                   ]),
             ),
             const Spacer(),
@@ -64,7 +71,9 @@ class ServiceSheet extends StatelessWidget {
               child: PrimaryButton(
                 onTap: saveCallback!,
                 text: 'Save Draft',
-                color: AppColors.kWhite,
+                color: isDarkMode(context)
+                    ? AppColors.kContentColor
+                    : AppColors.kWhite,
                 isBorder: true,
               ),
             ),

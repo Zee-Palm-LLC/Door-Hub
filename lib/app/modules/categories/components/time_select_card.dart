@@ -17,6 +17,9 @@ class _TimeSelectCardState extends State<TimeSelectCard> {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
     const int businessHourStart = 9;
     const int businessHourEnd = 17;
     final List<DateTime> dateTimes = List.generate(
@@ -36,7 +39,8 @@ class _TimeSelectCardState extends State<TimeSelectCard> {
 
     return Container(
       height: 370.h,
-      color: AppColors.kNeutral01,
+      color:
+          isDarkMode(context) ? AppColors.kContentColor : AppColors.kNeutral01,
       child: ListView.separated(
         itemBuilder: (context, index) {
           final dateTime = dateTimes[index];

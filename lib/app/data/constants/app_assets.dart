@@ -66,13 +66,14 @@ class AppAssets {
   static String kEmoji = 'assets/icons/emoji.svg';
   static String kMyCard = 'assets/icons/my_card.png';
   static String kServiceProvider = 'assets/icons/service_provider.png';
+  static String kSend = 'assets/icons/send.svg';
 
   // Images.
   static String kOnboardingFirst = 'assets/images/onboarding_first.png';
   static String kOnboardingSecond = 'assets/images/onboarding_second.png';
   static String kOnboardingThird = 'assets/images/onboarding_third.png';
   static String kLogoBlue = 'assets/images/logo_blue.png';
-  static String kProfilePic = 'assets/images/profileImage.png';
+  static String kProfilePic = 'assets/images/profileImage.jpg';
   static String kCleaningService1 = 'assets/images/cleaning_service_1.png';
   static String kCleaningService2 = 'assets/images/cleaning_service_2.png';
   static String kCleaningService3 = 'assets/images/cleaning_service_3.jpg';

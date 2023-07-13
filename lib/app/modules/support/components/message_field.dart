@@ -5,31 +5,35 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class MessageField extends StatelessWidget {
-  final bool isFocused;
+  final bool isExpanded;
   final VoidCallback attachmentCallback;
   final VoidCallback emojiCallback;
   final VoidCallback sendCallback;
-  final FocusNode focusNode;
   final TextEditingController controller;
+  final void Function(String)? onChanged;
   const MessageField(
       {super.key,
-      required this.isFocused,
+      required this.isExpanded,
       required this.attachmentCallback,
       required this.emojiCallback,
       required this.sendCallback,
-      required this.focusNode,
-      required this.controller});
+      required this.controller,
+      required this.onChanged,
+      });
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
     return Row(children: [
-      isFocused
+      isExpanded
           ? const SizedBox()
           : IconButton(
               onPressed: attachmentCallback,
               icon: SvgPicture.asset(AppAssets.kAttachment),
             ),
-      isFocused
+      isExpanded
           ? const SizedBox()
           : IconButton(
               onPressed: emojiCallback,
@@ -37,18 +41,19 @@ class MessageField extends StatelessWidget {
             ),
       Expanded(
           child: AnimatedContainer(
-        duration: Duration(seconds: 550),
-        curve: Curves.elasticInOut,
+        duration: const Duration(seconds: 550),
+        curve: Curves.ease,
         decoration: BoxDecoration(
-          color: AppColors.kInput,
+          color:
+              isDarkMode(context) ? AppColors.kContentColor : AppColors.kInput,
           borderRadius: BorderRadius.circular(AppSpacing.radiusForty),
         ),
         child: Row(
           children: [
             Expanded(
               child: TextField(
-                focusNode: focusNode,
                 controller: controller,
+                onChanged: onChanged,
                 decoration: InputDecoration(
                   hintText: 'Type your massage',
                   contentPadding: EdgeInsets.symmetric(horizontal: 12.w),
@@ -72,7 +77,7 @@ class MessageField extends StatelessWidget {
                     shape: BoxShape.circle,
                     color: AppColors.kPrimary,
                   ),
-                  child: SvgPicture.asset(AppAssets.kSearch)),
+                  child: SvgPicture.asset(AppAssets.kSend)),
             ),
           ],
         ),

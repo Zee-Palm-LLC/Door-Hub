@@ -28,12 +28,15 @@ class _ServiceDetailSheetState extends State<ServiceDetailSheet> {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
     return AnimatedContainer(
       duration: const Duration(milliseconds: 500),
       curve: Curves.bounceOut,
       padding: EdgeInsets.all(20.h),
       decoration: BoxDecoration(
-        color: AppColors.kWhite,
+        color: isDarkMode(context) ? AppColors.kContentColor : AppColors.kWhite,
         borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
       ),
       child: Column(
@@ -121,13 +124,17 @@ class _ServiceDetailSheetState extends State<ServiceDetailSheet> {
                 text: TextSpan(
                   text: 'Total:',
                   style: AppTypography.kMedium14.copyWith(
-                    color: AppColors.kGrey,
+                    color: isDarkMode(context)
+                        ? AppColors.kWhite
+                        : AppColors.kGrey,
                   ),
                   children: [
                     TextSpan(
                       text: '  USD 150.50',
                       style: AppTypography.kBold14.copyWith(
-                        color: Colors.black,
+                        color: isDarkMode(context)
+                            ? AppColors.kWhite
+                            : Colors.black,
                       ),
                     ),
                   ],
@@ -150,7 +157,9 @@ class _ServiceDetailSheetState extends State<ServiceDetailSheet> {
             text: 'Continue',
             color: _selectedDay != null && _selectedTime != null
                 ? null
-                : AppColors.kInput,
+                : isDarkMode(context)
+                    ? AppColors.kDarkInput
+                    : AppColors.kInput,
           ),
         ],
       ),

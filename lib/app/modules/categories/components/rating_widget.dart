@@ -10,6 +10,9 @@ class RatingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
     return Row(
       children: [
         SvgPicture.asset(AppAssets.kStar),
@@ -17,7 +20,8 @@ class RatingWidget extends StatelessWidget {
         RichText(
           text: TextSpan(
               text: service.averageRatings.toString(),
-              style: AppTypography.kBold12.copyWith(color: Colors.black),
+              style: AppTypography.kBold12.copyWith(
+                  color: isDarkMode(context) ? AppColors.kWhite : Colors.black),
               children: [
                 TextSpan(
                     text: '(${service.totalRatings})',
@@ -37,6 +41,9 @@ class SecondaryRatingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 4.5.h),
       decoration: BoxDecoration(
@@ -54,7 +61,11 @@ class SecondaryRatingWidget extends StatelessWidget {
           SizedBox(width: 5.w),
           Text('${service.averageRatings}',
               style: AppTypography.kBold12.copyWith(
-                color: color != null ? AppColors.kWhite : Colors.black,
+                color: color != null
+                    ? AppColors.kWhite
+                    : isDarkMode(context)
+                        ? AppColors.kWhite
+                        : Colors.black,
               ))
         ],
       ),

@@ -20,9 +20,12 @@ class SearchField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.kInput,
+        color: isDarkMode(context) ? AppColors.kContentColor : AppColors.kInput,
         borderRadius: BorderRadius.circular(AppSpacing.radiusTen),
       ),
       child: Row(

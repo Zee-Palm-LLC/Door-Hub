@@ -1,3 +1,4 @@
+import 'package:door_hub/app/controllers/theme_controller.dart';
 import 'package:door_hub/app/data/constants/constants.dart';
 import 'package:door_hub/app/modules/address/address_view.dart';
 import 'package:door_hub/app/modules/calendar/calendar_view.dart';
@@ -7,6 +8,7 @@ import 'package:door_hub/app/modules/payment/payment_view.dart';
 import 'package:door_hub/app/modules/profile/components/profile_image_card.dart';
 import 'package:door_hub/app/modules/profile/profile_view.dart';
 import 'package:door_hub/app/modules/refer_friend/refer_friend_view.dart';
+import 'package:door_hub/app/modules/widgets/dialogs/rating_dialog.dart';
 import 'package:door_hub/app/modules/widgets/drawer/side_menu.dart';
 import 'package:door_hub/app/modules/widgets/drawer/toogle_button.dart';
 import 'package:flutter/material.dart';
@@ -24,8 +26,12 @@ class _CustomDrawerState extends State<CustomDrawer> {
   int selectedMenu = 0;
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
     return Drawer(
-      backgroundColor: AppColors.kPrimary,
+      backgroundColor:
+          isDarkMode(context) ? AppColors.kDarkInput : AppColors.kPrimary,
       child: SafeArea(
         child: Padding(
           padding:
@@ -150,6 +156,32 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 isSelected: selectedMenu == 6,
                 text: 'Support',
               ),
+              SizedBox(height: 5.h),
+              SideMenu(
+                onPressed: () {
+                  setState(() {
+                    selectedMenu = 7;
+                  });
+                  showGeneralDialog(
+                      barrierColor: Colors.black.withOpacity(0.5),
+                      transitionBuilder: (context, a1, a2, widget) {
+                        return RatingDialog(
+                          opacity: a1,
+                          scale: a1,
+                        );
+                      },
+                      transitionDuration: const Duration(milliseconds: 200),
+                      barrierDismissible: true,
+                      barrierLabel: '',
+                      context: context,
+                      pageBuilder: (context, animation1, animation2) {
+                        return const SizedBox();
+                      });
+                },
+                icon: AppAssets.kStar,
+                isSelected: selectedMenu == 7,
+                text: 'Rate Us',
+              ),
               const Spacer(),
               const Divider(
                 color: AppColors.kHint,
@@ -159,7 +191,20 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 icon: AppAssets.kHelp,
                 text: 'Color Scheme',
               ),
-              ToggleButton(),
+              GetBuilder<ThemeController>(
+                init: ThemeController(),
+                initState: (_) {},
+                builder: (_) {
+                  return ToggleButton(
+                    onDarkModeSelected: () {
+                      _.setTheme('dark');
+                    },
+                    onLightModeSelected: () {
+                      _.setTheme('light');
+                    },
+                  );
+                },
+              ),
               SizedBox(height: 20.h),
             ],
           ),

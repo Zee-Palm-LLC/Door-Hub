@@ -23,9 +23,13 @@ class OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: AppColors.kWhite,
+      backgroundColor:
+          isDarkMode(context) ? AppColors.kDarkBackground : AppColors.kWhite,
       appBar: AppBar(
+        backgroundColor: AppColors.kDarkBackground,
         actions: [
           SkipButton(
             onTap: () {

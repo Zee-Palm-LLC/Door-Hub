@@ -12,6 +12,9 @@ class CustomSocialButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
     return ButtonAnimation(
       onTap: onTap,
       child: Container(
@@ -21,8 +24,9 @@ class CustomSocialButton extends StatelessWidget {
         padding: EdgeInsets.all(1.h),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(AppSpacing.radiusTen),
-          color: AppColors.kNeutral01,
-          border: Border.all(color: AppColors.kNeutral03, width: 2.w),
+          color:
+              isDarkMode(context) ? AppColors.kDarkHint : AppColors.kNeutral01,
+          border: Border.all(color:  isDarkMode(context) ? AppColors.kDarkInput :AppColors.kNeutral03, width: 2.w),
         ),
         child: SvgPicture.asset(icon),
       ),

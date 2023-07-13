@@ -25,6 +25,9 @@ class PrimaryButton extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
     return ButtonAnimation(
       onTap: onTap,
       child: Container(
@@ -39,7 +42,11 @@ class PrimaryButton extends StatelessWidget {
         child: Text(
           text,
           style: AppTypography.kBold15.copyWith(
-            color: color == null ? Colors.white : Colors.black,
+            color: color == null
+                ? Colors.white
+                : isDarkMode(context)
+                    ? AppColors.kWhite
+                    : Colors.black,
             fontSize: fontSize,
           ),
         ),

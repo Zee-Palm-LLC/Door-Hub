@@ -10,6 +10,9 @@ class ChatBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
     return chat.isSender
         ? Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,9 +36,21 @@ class ChatBubble extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 10.h),
-                    Text(
-                      chat.message,
-                      style: AppTypography.kLight15,
+                    Container(
+                      padding: EdgeInsets.all(10.h),
+                      decoration: BoxDecoration(
+                          color: isDarkMode(context)
+                              ? AppColors.kDarkSurfaceColor
+                              : AppColors.kInput,
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(10.r),
+                            topRight: Radius.circular(10.r),
+                            bottomRight: Radius.circular(10.r),
+                          )),
+                      child: Text(
+                        chat.message,
+                        style: AppTypography.kLight15,
+                      ),
                     )
                   ],
                 ),
@@ -63,10 +78,20 @@ class ChatBubble extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 10.h),
-                    Text(
-                      chat.message,
-                      style: AppTypography.kLight14,
-                      textAlign: TextAlign.end,
+                    Container(
+                      padding: EdgeInsets.all(10.h),
+                      decoration: BoxDecoration(
+                          color: AppColors.kPrimary,
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(10.r),
+                            topLeft: Radius.circular(10.r),
+                            bottomRight: Radius.circular(10.r),
+                          )),
+                      child: Text(
+                        chat.message,
+                        style: AppTypography.kLight15
+                            .copyWith(color: AppColors.kWhite),
+                      ),
                     )
                   ],
                 ),

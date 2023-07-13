@@ -1,3 +1,4 @@
+import 'package:door_hub/app/data/constants/constants.dart';
 import 'package:door_hub/app/modules/bookings/draft_bookings.dart';
 import 'package:door_hub/app/modules/bookings/history_booking.dart';
 import 'package:door_hub/app/modules/bookings/upcoming_booking.dart';
@@ -11,12 +12,16 @@ class BookingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
     return DefaultTabController(
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          title:
-              const CustomHeaderText(text: 'Bookings', fontColor: Colors.black),
+          title: CustomHeaderText(
+              text: 'Bookings',
+              fontColor: isDarkMode(context) ? AppColors.kWhite : Colors.black),
         ),
         body: Column(
           children: [
@@ -39,15 +44,16 @@ class BookingsView extends StatelessWidget {
                 ),
               ),
             ),
-             const Expanded(
-               child: TabBarView(
-                 physics:  NeverScrollableScrollPhysics(),
-                 children: [
-                   UpComingBookings(),
-                   HistoryBookings(),
-                   DraftBookings(),                 ],
-               ),
-             )
+            const Expanded(
+              child: TabBarView(
+                physics: NeverScrollableScrollPhysics(),
+                children: [
+                  UpComingBookings(),
+                  HistoryBookings(),
+                  DraftBookings(),
+                ],
+              ),
+            )
           ],
         ),
       ),

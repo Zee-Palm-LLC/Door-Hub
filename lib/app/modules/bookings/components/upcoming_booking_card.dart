@@ -16,12 +16,11 @@ class UpComingBookingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String formattedFromDate =
-        DateFormat('h:mm').format(bookings.fromDate);
+    String formattedFromDate = DateFormat('h:mm').format(bookings.fromDate);
     String formattedToDate =
         DateFormat('h:mm a, dd MMM').format(bookings.toDate);
     return FadeInAnimation(
-      curve: Curves.bounceInOut,
+      curve: Curves.easeIn,
       duration: const Duration(milliseconds: 500),
       child: PrimaryContainer(
           child: Column(
@@ -59,7 +58,8 @@ class UpComingBookingCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('$formattedFromDate-$formattedToDate', style: AppTypography.kMedium14),
+                  Text('$formattedFromDate-$formattedToDate',
+                      style: AppTypography.kMedium14),
                   Text('Schedule',
                       style: AppTypography.kLight12
                           .copyWith(color: AppColors.kNeutral04))

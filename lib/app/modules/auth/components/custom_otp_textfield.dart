@@ -35,6 +35,9 @@ class _OTPFieldState extends State<OTPField> {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: List.generate(
@@ -43,7 +46,8 @@ class _OTPFieldState extends State<OTPField> {
           width: 55.w,
           height: 64.h,
           decoration: BoxDecoration(
-              color: AppColors.kInput,
+              color:
+                  isDarkMode(context) ? AppColors.kDarkInput : AppColors.kInput,
               borderRadius: BorderRadius.circular(5.r)),
           child: TextField(
             controller: controllers[index],
@@ -57,7 +61,6 @@ class _OTPFieldState extends State<OTPField> {
                 }
               } else if (value.isEmpty && index > 0) {
                 focusNodes[index - 1].requestFocus();
-                
               }
             },
             keyboardType: TextInputType.number,

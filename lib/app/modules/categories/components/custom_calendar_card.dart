@@ -35,7 +35,7 @@ class _CustomCalendarCardState extends State<CustomCalendarCard> {
       lastDay: kLastDay,
       shouldFillViewport: true,
       availableGestures: AvailableGestures.none,
-      headerStyle: CustomCalendarStyle.getStyle(),
+      headerStyle: CustomCalendarStyle.getStyle(context),
       focusedDay: _focusedDay,
       selectedDayPredicate: (day) => isSameDay(_selectedDay, day),
       daysOfWeekStyle: DaysOfWeekStyle(

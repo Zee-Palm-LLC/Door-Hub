@@ -11,11 +11,23 @@ class HomeServicesCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
     return OpenContainer(
         transitionType: ContainerTransitionType.fadeThrough,
         openBuilder: (BuildContext _, VoidCallback openContainer) {
           return ServicesDetailView(services: service);
         },
+        middleColor: isDarkMode(context)
+            ? AppColors.kDarkSurfaceColor
+            : AppColors.kWhite,
+        openColor: isDarkMode(context)
+            ? AppColors.kDarkSurfaceColor
+            : AppColors.kWhite,
+        closedColor: isDarkMode(context)
+            ? AppColors.kDarkSurfaceColor
+            : AppColors.kWhite,
         closedShape: const RoundedRectangleBorder(),
         closedElevation: 0.0,
         closedBuilder: (BuildContext _, VoidCallback openContainer) {

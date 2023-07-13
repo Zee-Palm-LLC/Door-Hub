@@ -31,6 +31,9 @@ class _NotificationCardState extends State<NotificationCard> {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
     return AnimatedContainer(
       curve: Curves.easeInOut,
       duration: Duration(milliseconds: 300 + (widget.index * 200)),
@@ -74,13 +77,18 @@ class _NotificationCardState extends State<NotificationCard> {
                 RichText(
                   text: TextSpan(
                       text: widget.notification.notificationAbout,
-                      style: AppTypography.kMedium16.copyWith(color: Colors.black),
+                      style: AppTypography.kMedium16.copyWith(
+                          color: isDarkMode(context)
+                              ? AppColors.kWhite
+                              : Colors.black),
                       children: [
                         TextSpan(
                             text: widget.notification.notificationMessage,
                             style: AppTypography.kMedium16
                                 .copyWith(color: const Color(0xFF9A9FA5))),
-                        TextSpan(text: widget.notification.notificationInfo, style: AppTypography.kMedium16)
+                        TextSpan(
+                            text: widget.notification.notificationInfo,
+                            style: AppTypography.kMedium16)
                       ]),
                 ),
                 SizedBox(height: 5.h),

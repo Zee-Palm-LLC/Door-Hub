@@ -4,8 +4,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class ToggleButton extends StatefulWidget {
+  final VoidCallback onLightModeSelected;
+  final VoidCallback onDarkModeSelected;
+
+  const ToggleButton({
+    super.key,
+    required this.onLightModeSelected,
+    required this.onDarkModeSelected,
+  });
+
   @override
-  _ToggleButtonState createState() => _ToggleButtonState();
+  ToggleButtonState createState() => ToggleButtonState();
 }
 
 const double width = 300;
@@ -15,7 +24,7 @@ const double darkAlign = 1;
 const Color selectedColor = Colors.black;
 const Color normalColor = Colors.white;
 
-class _ToggleButtonState extends State<ToggleButton> {
+class ToggleButtonState extends State<ToggleButton> {
   late double xAlign;
   late Color lightColor;
   late Color darkColor;
@@ -35,8 +44,9 @@ class _ToggleButtonState extends State<ToggleButton> {
       height: 50.h,
       padding: EdgeInsets.all(5.h),
       decoration: BoxDecoration(
-          color: AppColors.kWhite.withOpacity(0.1),
-          borderRadius: BorderRadius.circular(AppSpacing.radiusFifty)),
+        color: AppColors.kWhite.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(AppSpacing.radiusFifty),
+      ),
       child: Stack(
         children: [
           AnimatedAlign(
@@ -46,8 +56,9 @@ class _ToggleButtonState extends State<ToggleButton> {
               width: width * 0.45,
               height: height,
               decoration: BoxDecoration(
-                  color: AppColors.kWhite,
-                  borderRadius: BorderRadius.circular(AppSpacing.radiusFifty)),
+                color: AppColors.kWhite,
+                borderRadius: BorderRadius.circular(AppSpacing.radiusFifty),
+              ),
             ),
           ),
           GestureDetector(
@@ -57,6 +68,7 @@ class _ToggleButtonState extends State<ToggleButton> {
                 lightColor = selectedColor;
                 darkColor = normalColor;
               });
+              widget.onLightModeSelected();
             },
             child: Align(
               alignment: const Alignment(-1, 0),
@@ -73,9 +85,11 @@ class _ToggleButtonState extends State<ToggleButton> {
                           ColorFilter.mode(lightColor, BlendMode.srcIn),
                     ),
                     SizedBox(width: 5.w),
-                    Text('Light',
-                        style: AppTypography.kMedium15
-                            .copyWith(color: lightColor)),
+                    Text(
+                      'Light',
+                      style:
+                          AppTypography.kMedium15.copyWith(color: lightColor),
+                    ),
                   ],
                 ),
               ),
@@ -86,9 +100,9 @@ class _ToggleButtonState extends State<ToggleButton> {
               setState(() {
                 xAlign = darkAlign;
                 darkColor = selectedColor;
-
                 lightColor = normalColor;
               });
+              widget.onDarkModeSelected();
             },
             child: Align(
               alignment: const Alignment(1, 0),
@@ -99,17 +113,17 @@ class _ToggleButtonState extends State<ToggleButton> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                     SvgPicture.asset(
+                    SvgPicture.asset(
                       AppAssets.kDark,
-                      colorFilter:
-                          ColorFilter.mode(darkColor, BlendMode.srcIn),
+                      colorFilter: ColorFilter.mode(darkColor, BlendMode.srcIn),
                     ),
                     SizedBox(width: 5.w),
-                    Text('Dark',
-                        style: AppTypography.kMedium15
-                            .copyWith(color: darkColor)),
+                    Text(
+                      'Dark',
+                      style: AppTypography.kMedium15.copyWith(color: darkColor),
+                    ),
                   ],
-                )
+                ),
               ),
             ),
           ),

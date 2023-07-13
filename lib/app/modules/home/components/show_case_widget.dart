@@ -19,6 +19,9 @@ class CustomShowCaseWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
+
     return Container(
       width: 300.w,
       padding: EdgeInsets.all(12.h),
@@ -48,7 +51,9 @@ class CustomShowCaseWidget extends StatelessWidget {
                 height: 30.h,
                 width: 60.w,
                 borderRadius: 30.r,
-                color: AppColors.kWhite,
+                color: isDarkMode(context)
+                    ? AppColors.kSecondary
+                    : AppColors.kWhite,
               )
             ],
           )

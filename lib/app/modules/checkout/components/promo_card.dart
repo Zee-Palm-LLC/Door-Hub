@@ -29,7 +29,7 @@ class PromoCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Ashfak2022', style: AppTypography.kMedium16),
+                Text('Service HUB 21', style: AppTypography.kMedium16),
                 SizedBox(height: 5.h),
                 Text(
                   'You will get 20% discount for this promo code.',

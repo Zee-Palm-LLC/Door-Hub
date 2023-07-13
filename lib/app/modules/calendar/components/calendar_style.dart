@@ -4,7 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class CustomCalendarStyle {
-  static HeaderStyle getStyle() {
+  static HeaderStyle getStyle(context) {
+    bool isDarkMode(BuildContext context) =>
+        Theme.of(context).brightness == Brightness.dark;
     return HeaderStyle(
       formatButtonVisible: false,
       titleCentered: true,
@@ -12,15 +14,21 @@ class CustomCalendarStyle {
       leftChevronIcon: Container(
         height: 36.h,
         width: 36.w,
-        decoration:
-            const BoxDecoration(color: AppColors.kInput, shape: BoxShape.circle),
+        decoration: BoxDecoration(
+            color: isDarkMode(context)
+                ? AppColors.kContentColor
+                : AppColors.kInput,
+            shape: BoxShape.circle),
         child: Icon(Icons.arrow_back_ios_new_rounded, size: 16.h),
       ),
       rightChevronIcon: Container(
         height: 36.h,
         width: 36.w,
-        decoration:
-            const BoxDecoration(color: AppColors.kInput, shape: BoxShape.circle),
+        decoration: BoxDecoration(
+            color: isDarkMode(context)
+                ? AppColors.kContentColor
+                : AppColors.kInput,
+            shape: BoxShape.circle),
         child: Icon(Icons.arrow_forward_ios_rounded, size: 16.h),
       ),
       headerMargin: EdgeInsets.only(bottom: 23.h),
