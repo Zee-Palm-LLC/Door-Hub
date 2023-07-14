@@ -50,7 +50,8 @@ class _SignUpState extends State<SignUp> {
       backgroundColor:
           isDarkMode(context) ? AppColors.kDarkBackground : AppColors.kWhite,
       appBar: AppBar(
-        backgroundColor: AppColors.kDarkBackground,
+        backgroundColor:
+            isDarkMode(context) ? AppColors.kDarkBackground : AppColors.kWhite,
         leading: const BackButton(),
       ),
       body: SingleChildScrollView(

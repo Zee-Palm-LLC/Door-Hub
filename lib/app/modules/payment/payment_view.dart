@@ -36,7 +36,14 @@ class _PaymentMethodViewState extends State<PaymentMethodView> {
                     const Spacer(),
                     CustomButton(
                       icon: AppAssets.kAddRounded,
-                      onTap: () {},
+                      onTap: () {
+                        showModalBottomSheet(
+                            context: context,
+                            isScrollControlled: true,
+                            builder: (context) {
+                              return const AddNewCardSheet();
+                            });
+                      },
                       text: 'Add New',
                       isBorder: true,
                     ),
@@ -57,7 +64,8 @@ class _PaymentMethodViewState extends State<PaymentMethodView> {
                               },
                               selectedPayment: _selectedPayment == index);
                         },
-                        separatorBuilder: (context, index) => Divider(height: 20.h),
+                        separatorBuilder: (context, index) =>
+                            Divider(height: 20.h),
                         itemCount: paymentMethods.length))
               ]),
             ),
@@ -68,14 +76,7 @@ class _PaymentMethodViewState extends State<PaymentMethodView> {
                   CustomHeaderText(text: 'Your Credit', fontSize: 18.sp),
                   SizedBox(height: 16.h),
                   PaymentCard(
-                    onTap: () {
-                      showModalBottomSheet(
-                          context: context,
-                          isScrollControlled: true,
-                          builder: (context) {
-                            return const AddNewCardSheet();
-                          });
-                    },
+                    onTap: () {},
                     titleColor: AppColors.kAccent1,
                     payment: PaymentModel(
                       id: '1',

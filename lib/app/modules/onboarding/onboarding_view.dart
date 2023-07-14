@@ -29,7 +29,8 @@ class OnboardingScreenState extends State<OnboardingScreen> {
       backgroundColor:
           isDarkMode(context) ? AppColors.kDarkBackground : AppColors.kWhite,
       appBar: AppBar(
-        backgroundColor: isDarkMode(context) ? AppColors.kDarkBackground : AppColors.kWhite,
+        backgroundColor:
+            isDarkMode(context) ? AppColors.kDarkBackground : AppColors.kWhite,
         actions: [
           SkipButton(
             onTap: () {
@@ -69,6 +70,11 @@ class OnboardingScreenState extends State<OnboardingScreen> {
                 setState(() {
                   _currentPageIndex = index;
                 });
+                _pageController.animateToPage(
+                  index,
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.easeInOut,
+                );
               }),
           SizedBox(height: 30.h),
           (_currentPageIndex < onboardingList.length - 1)
