@@ -22,6 +22,7 @@ class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeController = Get.put(ThemeController());
+    print(themeController.theme);
     return ScreenUtilInit(
       designSize: const Size(375, 844),
       useInheritedMediaQuery: true,
